@@ -23,3 +23,23 @@ false
 
 </aside> */
 }
+
+// Taking two pointer approach
+let arr = [0, 2, 3, 4, 5, 2, 1, 0];
+
+function isMountainArray(arr) {
+  let n = arr.length;
+
+  let i = 0;
+  if (n <= 3) return false;
+
+  while (i < n - 1 && arr[i] < arr[i + 1]) i++;
+
+  if (i == 0 || i == n - 1) return false;
+
+  while (i < n - 1 && arr[i] > arr[i + 1]) i++;
+
+  return i === n - 1;
+}
+
+console.log(isMountainArray(arr));
