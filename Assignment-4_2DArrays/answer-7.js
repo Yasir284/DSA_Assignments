@@ -24,31 +24,47 @@ let m = 3,
     [2, 2],
     [3, 3],
   ];
-// Initialize m x n with 0's
-const M = new Array(3).fill(0).map(() => new Array(3).fill(0));
 
-function incrementBy(m, n) {
-  for (let i = 0; i < m; i++) {
-    for (let j = 0; j < n; j++) {
-      M[i][j] += 1;
-    }
+// ============================ Approach 2====================================
+
+function numOfMaxInt(m, n, ops) {
+  let minRow = m;
+  let minCol = n;
+
+  for (let i = 0; i < ops.length; i++) {
+    minRow = Math.min(minRow, ops[i][0]);
+    minCol = Math.min(minCol, ops[i][1]);
   }
+  return minRow * minCol;
 }
+console.log(numOfMaxInt(m, n, ops));
 
-// perform operations op's
+// ============================ Approach 1====================================
+// // Initialize m x n with 0's
+// const M = new Array(3).fill(0).map(() => new Array(3).fill(0));
 
-for (let i = 0; i < ops.length; i++) {
-  incrementBy(ops[i][1], ops[i][0]);
-}
+// function incrementBy(m, n) {
+//   for (let i = 0; i < m; i++) {
+//     for (let j = 0; j < n; j++) {
+//       M[i][j] += 1;
+//     }
+//   }
+// }
 
-console.table(M);
+// // perform operations op's
 
-const counts = {};
+// for (let i = 0; i < ops.length; i++) {
+//   incrementBy(ops[i][1], ops[i][0]);
+// }
 
-for (let i = 0; i < m; i++) {
-  for (let j = 0; j < n; j++) {
-    if (counts[M[i][j]]) counts[M[i][j]]++;
-    else counts[M[i][j]] = 1;
-  }
-}
-console.log(counts[Object.keys(counts)[Object.keys(counts).length - 1]]);
+// console.table(M);
+
+// const counts = {};
+
+// for (let i = 0; i < m; i++) {
+//   for (let j = 0; j < n; j++) {
+//     if (counts[M[i][j]]) counts[M[i][j]]++;
+//     else counts[M[i][j]] = 1;
+//   }
+// }
+// console.log(counts[Object.keys(counts)[Object.keys(counts).length - 1]]);
