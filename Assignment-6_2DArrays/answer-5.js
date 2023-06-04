@@ -20,3 +20,18 @@ We can rearrange nums1 to become [3,5,4,2]. The product sum of [3,5,4,2] and [4,
 
 </aside> */
 }
+let nums1 = [5, 3, 4, 2],
+  nums2 = [4, 2, 2, 5];
+
+function minProductSum(nums1, nums2) {
+  let sum = 0;
+  nums1.sort((a, b) => a - b);
+  nums2.sort((a, b) => b - a);
+
+  for (let i = 0; i < nums1.length; i++) {
+    sum += nums1[i] * nums2[i];
+  }
+
+  return sum;
+}
+console.log(minProductSum(nums1, nums2));

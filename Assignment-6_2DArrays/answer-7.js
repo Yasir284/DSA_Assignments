@@ -14,3 +14,39 @@ Given a positive integer n, generate an n x n matrix filled with elements from 1
 
 </aside> */
 }
+function spiralMatrix(n) {
+  let M = Array.from({ length: n }, () => new Array(n));
+  let left = 0;
+  let right = n - 1;
+  let up = 0;
+  let down = n - 1;
+  let i = 1;
+
+  while (left <= right && up <= down) {
+    for (let col = left; col <= right; col++) {
+      M[up][col] = i;
+      i++;
+    }
+    up++;
+    for (let row = up; row <= down; row++) {
+      M[row][right] = i;
+      i++;
+    }
+    right--;
+
+    for (let col = right; col >= left; col--) {
+      M[down][col] = i;
+      i++;
+    }
+    down--;
+
+    for (let row = down; row >= up; row--) {
+      M[row][left] = i;
+      i++;
+    }
+    left++;
+  }
+
+  return M;
+}
+console.table(spiralMatrix(3));

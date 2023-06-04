@@ -20,3 +20,27 @@
 // Other original arrays could be [4,3,1] or [3,1,4].
 
 // </aside>
+
+let changed = [1, 3, 4, 2, 6, 8];
+
+function findOrignal(changed) {
+  let map = new Map();
+  let arr = [];
+
+  for (let i = 0; i < changed.length; i++) {
+    map.set(changed[i], (map.get(changed[i]) || 0) + 1);
+  }
+  console.log(map.entries());
+  for (let i = 0; i < changed.length; i++) {
+    let double = changed[i] * 2;
+
+    if (map.get(double) > 0) {
+      arr.push(changed[i]);
+      map.set(double, map.get(double) - 1);
+      map.set(changed[i], map.get(changed[i]) - 1);
+    }
+  }
+
+  return arr;
+}
+console.log(findOrignal(changed));
