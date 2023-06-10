@@ -20,18 +20,29 @@ The substrings are a, b, a and aba
 </aside> */
 }
 
-function subStringsCount(S, index) {
-  if (index === S.length) {
-    return 0;
+function subStringsCount(str) {
+  var count = 0;
+
+  // Recursive helper function
+  function countHelper(start, end) {
+    if (start > end) {
+      return;
+    }
+
+    if (str[start] === str[end]) {
+      count++;
+    }
+
+    countHelper(start, end - 1);
   }
 
-  let count = subStringsCount(S, index + 1);
-  console.log(count);
-  if (index < S.length - 1 && S[index] === S[index + 1]) {
-    count += 1;
-    count += subStringsCount(S, index + 1);
+  // Call the helper function for all possible substrings
+  for (var i = 0; i < str.length; i++) {
+    countHelper(i, str.length - 1);
   }
 
   return count;
 }
-console.log(subStringsCount("abcab", 0));
+
+var S1 = "abcab";
+console.log(subStringsCount(S1, 0, S1.length - 1));
