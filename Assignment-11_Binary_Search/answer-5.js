@@ -16,3 +16,21 @@ Explanation: [4,9] is also accepted.
 
 </aside> */
 }
+
+let nums1 = [1, 2, 2, 1],
+  nums2 = [2, 2];
+
+function intersectArr(nums1, nums2) {
+  let set = new Set(nums1);
+  let intersection = [];
+
+  for (let i = 0; i < nums2.length; i++) {
+    if (set.has(nums2[i])) {
+      intersection.push(nums2[i]);
+      set.delete(nums2[i]);
+    }
+  }
+
+  return intersection;
+}
+console.log(intersectArr(nums1, nums2));
