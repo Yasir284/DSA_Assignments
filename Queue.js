@@ -21,6 +21,13 @@ class Queue {
     return item;
   }
 
+  removeElement(key) {
+    const item = this.items[key];
+    delete this.items[key];
+    this.size--;
+    return item;
+  }
+
   front() {
     return this.items[this.frontIndex];
   }
