@@ -30,9 +30,42 @@ Explanation: The array contains less than 2 elements, therefore return 0.
 - `0 <= nums[i] <= 10^9`
 </aside> */
 }
+function maximumGap(nums) {
+  const n = nums.length;
+  if (n < 2) {
+    return 0;
+  }
 
-let nums = [3, 6, 9, 1];
+  let minNum = Math.min(...nums);
+  let maxNum = Math.max(...nums);
 
-function maximumGap(nums) {}
+  let minGap = Math.ceil((maxNum - minNum) / (n - 1));
 
-console.log(maximumGap(nums));
+  const bucketMin = new Array(n - 1).fill(Infinity);
+  const bucketMax = new Array(n - 1).fill(-Infinity);
+
+  for (let i = 0; i < n; i++) {
+    if (nums[i] === minNum || nums[i] === maxNum) {
+      continue;
+    }
+    let index = Math.floor((nums[i] - minNum) / minGap);
+    bucketMin[index] = Math.min(bucketMin[index], nums[i]);
+    bucketMax[index] = Math.max(bucketMax[index], nums[i]);
+  }
+
+  let maxGap = 0;
+  let prevMax = minNum;
+  for (let i = 0; i < n - 1; i++) {
+    if (bucketMin[i] === Infinity && bucketMax[i] === -Infinity) {
+      continue;
+    }
+    maxGap = Math.max(maxGap, bucketMin[i] - prevMax);
+    prevMax = bucketMax[i];
+  }
+  maxGap = Math.max(maxGap, maxNum - prevMax);
+
+  return maxGap;
+}
+
+console.log(maximumGap([3, 6, 9, 1])); // Output: 3
+console.log(maximumGap([10])); // Output: 0

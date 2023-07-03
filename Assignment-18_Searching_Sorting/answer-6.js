@@ -46,3 +46,43 @@ Explanation: The balloons can be burst by 2 arrows:
 - `231 <= xstart < xend <= 2^31 - 1`
 </aside> */
 }
+
+function minNumOfArrorws(points) {
+  let arrows = 0;
+  points.sort((a, b) => a[1] - b[1]);
+  let end = points[0][1];
+
+  for (let i = 0; i < points.length; i++) {
+    if (points[i][0] > end) {
+      arrows++;
+      end = points[i][1];
+    }
+  }
+
+  return arrows;
+}
+
+console.log(
+  minNumOfArrorws([
+    [10, 16],
+    [2, 8],
+    [1, 6],
+    [7, 12],
+  ])
+); // Output: 2
+console.log(
+  minNumOfArrorws([
+    [1, 2],
+    [3, 4],
+    [5, 6],
+    [7, 8],
+  ])
+); // Output: 4
+console.log(
+  minNumOfArrorws([
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [4, 5],
+  ])
+); // Output: 2
