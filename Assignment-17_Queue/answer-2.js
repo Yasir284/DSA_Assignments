@@ -34,3 +34,32 @@ Explanation: Subarray [-2] has maximum sum -2.
 
 </aside> */
 }
+function maxSubarraySumCircular(nums) {
+  const n = nums.length;
+
+  let maxSum = nums[0];
+  let currMax = nums[0];
+  for (let i = 1; i < n; i++) {
+    currMax = Math.max(nums[i], currMax + nums[i]);
+    maxSum = Math.max(maxSum, currMax);
+  }
+
+  let minSum = nums[0];
+  let currMin = nums[0];
+  let totalSum = nums[0];
+  for (let i = 1; i < n; i++) {
+    currMin = Math.min(nums[i], currMin + nums[i]);
+    minSum = Math.min(minSum, currMin);
+    totalSum += nums[i];
+  }
+
+  if (totalSum === minSum) {
+    return maxSum;
+  }
+
+  return Math.max(maxSum, totalSum - minSum);
+}
+
+console.log(maxSubarraySumCircular([1, -2, 3, -2])); // Output: 3
+console.log(maxSubarraySumCircular([5, -3, 5])); // Output: 10
+console.log(maxSubarraySumCircular([-3, -2, -3])); // Output: -2
