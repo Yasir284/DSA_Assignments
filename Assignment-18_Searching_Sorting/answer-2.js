@@ -31,3 +31,28 @@ Output: [0,1,2]
 - `nums[i]` is either `0`, `1`, or `2`.
 </aside> */
 }
+
+let nums = [2, 0, 2, 1, 1, 0];
+
+function sortColors(arr) {
+  let p0 = 0;
+  let curr = 0;
+  let p2 = arr.length - 1;
+
+  while (curr < p2) {
+    if (arr[curr] === 0) {
+      [arr[p0], arr[curr]] = [arr[curr], arr[p0]];
+      p0++;
+      curr++;
+    } else if (arr[curr] === 2) {
+      [arr[p2], arr[curr]] = [arr[curr], arr[p2]];
+      p2--;
+    } else {
+      curr++;
+    }
+  }
+
+  return arr;
+}
+
+console.log(sortColors(nums));

@@ -34,3 +34,27 @@ Output: 1
 - `1 <= bad <= n <= 2^31 - 1`
 </aside> */
 }
+
+function firstBadVersion(n) {
+  let left = 1;
+  let right = n;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (isBadVersion(mid)) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+  return left;
+}
+
+function badVersion(x) {
+  return (a) => x >= a;
+}
+
+let isBadVersion = badVersion(4);
+
+console.log(firstBadVersion(5));

@@ -41,3 +41,19 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
 
 </aside> */
 }
+
+function is132Pattern(nums) {
+  for (let i = 0; i < nums.length - 2; i++) {
+    let numi = nums[i];
+    let numj = nums[i + 1];
+    let numk = nums[i + 2];
+
+    if (numi < numk && numk < numj) return true;
+  }
+
+  return false;
+}
+
+console.log(is132Pattern([1, 2, 3, 4]));
+console.log(is132Pattern([3, 1, 4, 2]));
+console.log(is132Pattern([-1, 3, 2, 0]));

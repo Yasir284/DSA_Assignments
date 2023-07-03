@@ -39,3 +39,16 @@ Output: 1
 - `-10^4 <= nums[i] <= 10^4`
 </aside> */
 }
+
+function lengthOfLIS(nums) {
+  let count = 1;
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] < nums[i + 1]) count++;
+  }
+
+  return count;
+}
+
+console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
+console.log(lengthOfLIS([0, 1, 0, 3, 2, 3]));
+console.log(lengthOfLIS([7, 7, 7, 7, 7, 7, 7]));

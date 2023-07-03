@@ -30,3 +30,9 @@ Explanation: The array contains less than 2 elements, therefore return 0.
 - `0 <= nums[i] <= 10^9`
 </aside> */
 }
+
+let nums = [3, 6, 9, 1];
+
+function maximumGap(nums) {}
+
+console.log(maximumGap(nums));

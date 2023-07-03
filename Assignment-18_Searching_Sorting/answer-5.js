@@ -34,3 +34,16 @@ Output: true
 - `109 <= nums[i] <= 10^9`
 </aside> */
 }
+let nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2];
+
+function containsDuplicate(nums) {
+  let set = new Set();
+
+  for (let i = 0; i < nums.length; i++) {
+    if (set.has(nums[i])) return true;
+    set.add(nums[i]);
+  }
+
+  return false;
+}
+console.log(containsDuplicate(nums));

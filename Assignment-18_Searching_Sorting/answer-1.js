@@ -29,3 +29,35 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 - `0 <= starti <= endi <= 10000`
 </aside> */
 }
+
+let intervals = [
+  [1, 3],
+  [2, 6],
+  [8, 10],
+  [15, 18],
+];
+
+intervals = [
+  [1, 4],
+  [4, 5],
+];
+
+function mergeItervals(arr) {
+  let result = [];
+  let left = 0;
+  let right = 1;
+
+  while (left < arr.length && right < arr.length) {
+    if (!(arr[left][1] >= arr[right][0] && arr[left][1] <= arr[right][1])) {
+      result.push([arr[left][0], arr[right - 1][1]]);
+      left = right;
+    }
+    right++;
+  }
+
+  result.push([arr[left][0], arr[right - 1][1]]);
+
+  return result;
+}
+
+console.log(mergeItervals(intervals));
